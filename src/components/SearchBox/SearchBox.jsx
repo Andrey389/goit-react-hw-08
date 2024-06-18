@@ -1,8 +1,8 @@
 import css from "./SearchBox.module.css";
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { statusFilters } from "../../redux/filtersSlice";
-import { selectStatusFilter } from "../../redux/selectors";
+import { statusFilters } from "../../redux/filters/slice";
+import { selectStatusFilter } from "../../redux/filters/selectors";
 
 export default function SearchBox() {
   const id = useId();

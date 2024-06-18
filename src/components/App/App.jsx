@@ -3,8 +3,8 @@ import SearchBox from "../SearchBox/SearchBox";
 import ContactForm from "../ContactForm/ContactForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contactsOps";
-import { selectError, selectIsLoading } from "../../redux/selectors";
+import { fetchContacts } from "../../redux/contacts/operations";
+import { selectError, selectIsLoading } from "../../redux/contacts/selectors";
 
 export default function App() {
   const dispatch = useDispatch();
