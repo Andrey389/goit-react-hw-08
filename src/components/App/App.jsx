@@ -1,27 +1,19 @@
-import { ContactList } from "../ContactList/ContactList";
-import SearchBox from "../SearchBox/SearchBox";
-import ContactForm from "../ContactForm/ContactForm";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contacts/operations";
-import { selectError, selectIsLoading } from "../../redux/contacts/selectors";
+import { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "../Layout/Layout";
+
+const ContactsPage = lazy(() =>
+  import("../../pages/ContactsPage/ContactsPages")
+);
 
 export default function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      {isLoading && !error && <b>Request in progress...</b>}
-      {error && <p>{error}</p>}
-      <ContactList />
-    </>
+    <Layout>
+      <Suspense>
+        <Routes>
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
