@@ -4,7 +4,7 @@ import css from "./AuthNav.module.css";
 
 export default function AuthNav() {
   return (
-    <div>
+    <div className={css.nav}>
       <NavLink
         to="/login"
         className={({ isActive }) => {
@@ -12,6 +12,14 @@ export default function AuthNav() {
         }}
       >
         Login In
+      </NavLink>
+      <NavLink
+        to="/register"
+        className={({ isActive }) => {
+          return clsx(css.link, isActive && css.active);
+        }}
+      >
+        Register
       </NavLink>
     </div>
   );
