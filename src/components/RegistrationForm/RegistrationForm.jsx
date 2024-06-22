@@ -1,24 +1,31 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import css from "./RegistrationForm.module.css";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
 export default function RegistrationForm() {
+  const dispatch = useDispatch();
+  const handleSubmit = (values, actions) => {
+    dispatch(register(values));
+    // .unwrap()
+    // .then((data) => console.log(data))
+    // .cath((error) => console.log(error));
+    actions.resetForm();
+  };
   return (
     <Formik
       initialValues={{
-        username: "",
+        name: "",
         email: "",
         password: "",
       }}
+      onSubmit={handleSubmit}
     >
       <Form className={css.form}>
         <label htmlFor="" className={css.group}>
-          Username
-          <Field type="username" name="username" />
-          <ErrorMessage
-            className={css.error}
-            name="username"
-            component="span"
-          />
+          Name
+          <Field type="name" name="name" />
+          <ErrorMessage className={css.error} name="name" component="span" />
         </label>
         <label htmlFor="" className={css.group}>
           Email
