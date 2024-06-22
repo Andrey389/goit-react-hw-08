@@ -5,6 +5,7 @@ import { register } from "../../redux/auth/operations";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
     dispatch(register(values));
     // .unwrap()
@@ -12,6 +13,7 @@ export default function RegistrationForm() {
     // .cath((error) => console.log(error));
     actions.resetForm();
   };
+
   return (
     <Formik
       initialValues={{
