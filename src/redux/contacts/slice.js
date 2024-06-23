@@ -3,6 +3,7 @@ import { selectContacts } from "./selectors";
 import { selectStatusFilter } from "../filters/selectors";
 import { fetchContacts, addContact, deleteContact } from "./operations";
 import { createSelector } from "@reduxjs/toolkit";
+import { logOut } from "../auth/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -45,7 +46,12 @@ const contactsSlice = createSlice({
         );
         state.items.splice(index, 1);
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.isLoading = false;
+        state.error = null;
+      });
   },
 });
 

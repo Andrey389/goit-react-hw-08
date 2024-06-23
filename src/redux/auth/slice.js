@@ -20,14 +20,14 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isLoading: false,
-    error: null,
+    isRefreshing: false,
   },
   extraReducers: (bilder) => {
     bilder
       .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
+        state.isRefreshing = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
@@ -36,7 +36,7 @@ const authSlice = createSlice({
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
+        state.isRefreshing = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;

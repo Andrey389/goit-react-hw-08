@@ -8,9 +8,6 @@ export default function RegistrationForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(register(values));
-    // .unwrap()
-    // .then((data) => console.log(data))
-    // .cath((error) => console.log(error));
     actions.resetForm();
   };
 
